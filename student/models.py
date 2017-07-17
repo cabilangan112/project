@@ -10,20 +10,20 @@ class Detail(models.Model):
 	middle_name = models.CharField(max_length=150)
 	age = models.IntegerField()
 	b_day = models.DateTimeField()
-	course = models.ManytoManyField("Course",related_name="Detail")
+	course = models.ManyToManyField("Course",related_name="Detail")
 	
 	def __str__(self):
 		return "{} by {}".format(self.first_name,self.list_course())
 
 	def list_course(self):
-		return ",".join([course.course_name for course in self.course.all()])
+		return ",".join([Course.Course_name for Course in self.Course.all()])
 
 	def save(self, *args,**kwargs):
-		super(Details,self).save(*args,**kwargs)
+		super(Detail,self).save(*args,**kwargs)
 
 class Course(models.Model):
 	course_name = models.CharField(max_length=150)
 	course_description = models.TextField(max_length=550)
 	
 	def __str__(self):
-		return self.course_name
+		return self.Course_name

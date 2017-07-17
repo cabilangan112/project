@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 
 from django.contrib import admin
+from .models import Detail
+from .models import Course
 
 
 class StudentAdmin(admin.ModelAdmin):
     fieldset = [
-	    ("Student Details", {"field":["first_name","last_name"]})
+	    ("Student Detail", {"field":["first_name","last_name"]})
 	]
 	
-	def student_course(self, obj);
-	    return obj.list_course()
+def student_Course(self, obj):
+	return obj.list_Course()
 		
 list_display = ("first_name","last_name",)
-		
-from .models import Detail
-from .models import Course
 
+admin.site.register(Detail)
+admin.site.register(Course)
 
 
 # Register your models here.
