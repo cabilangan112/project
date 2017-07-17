@@ -13,10 +13,10 @@ class Detail(models.Model):
 	course = models.ManytoManyField("Course",related_name="Detail")
 	
 	def __str__(self):
-		return "{} by {}" .format(self.first_name),self.list_course())
+		return "{} by {}".format(self.first_name,self.list_course())
 
 	def list_course(self):
-		return "," .join([course.course_name for course in self.course.all()])
+		return ",".join([course.course_name for course in self.course.all()])
 
 	def save(self, *args,**kwargs):
 		super(Details,self).save(*args,**kwargs)
