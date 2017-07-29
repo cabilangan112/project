@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from django.views.generic import View
+
 from .models import Detail
 from .models import Course
 from .models import Subject
@@ -22,7 +23,7 @@ class Courselist(View):
 		}
 		return render(request,"course.html",context)
 
-class Subjeclist(View):
+class Subjectlist(View):
 	def get(self,request):
 		subjects = Subject.objects.all()
 		context = {
