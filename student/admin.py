@@ -1,22 +1,42 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
 from django.contrib import admin
-from .models import Detail
-from .models import Course
-
-
-class StudentAdmin(admin.ModelAdmin):
-    fieldset = [
-	    ("Student Detail", {"field":["first_name","last_name"]})
-	]
-	
-def student_Course(self, obj):
-	return obj.list_Course()
-		
-list_display = ("first_name","last_name",)
-
-admin.site.register(Detail)
-admin.site.register(Course)
-
 
 # Register your models here.
+from .models import Detail
+from .models import Course
+from .models import Subject
+#from .models import Professor
+
+class StudentAdmin(admin.ModelAdmin):
+	fieldset = [("Student Detail", {"field":["first_name","last_name"]})
+	]
+	
+def Student_Course(self, obj):
+	return obj.list_course()
+	
+class CourseAdmin(admin.ModelAdmin):
+	list_display = ("course_name","course_description",)
+	list_editable = ("course_description",)
+	list_filter = ("course_name",)
+	search_fields = ("course_name","course_description",)
+	
+class DetailAdmin(admin.ModelAdmin):
+	list_display = ("first_name","last_name","middle_name",)
+	list_editable = ("last_name",)
+	list_filter = ("last_name",)
+	search_fields = ("first_name","last_name",)
+
+class SubjectAdmin(admin.ModelAdmin):
+	list_display = ("subject_name","subject_description",)
+	list_editable = ("subject_description",)
+	list_filter = ("subject_name",)
+	search_fields = ("subject_name","subject_description",)
+	
+admin.site.register(Detail,DetailAdmin)
+admin.site.register(Course,CourseAdmin)
+admin.site.register(Subject,SubjectAdmin)
+
+	
+
