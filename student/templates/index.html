@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+	<h1>hellow</h1>
+
+	{% if request.user.is_authenticated %}
+	<h1>Hi {{request.user.username|title}}</h1>
+	{% else %}
+		<p>Welcome!</p>
+	{% endif %}
+
+
+	<h1>Students</h1>
+	<p>{{student.count}} student </p>
+	{% for student in student %}
+	<p>{{ student.first_name}}{{ student.last_name}}</p>
+	{% endfor %}
+	
+</body>
